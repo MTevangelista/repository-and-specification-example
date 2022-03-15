@@ -1,4 +1,4 @@
-import { uuid } from "uuidv4"
+import { v4 as uuidv4 } from 'uuid'
 
 export abstract class Entity<T> {
     protected readonly props: T 
@@ -6,6 +6,6 @@ export abstract class Entity<T> {
 
     constructor(props: T, id?: string) {
         this.props = props
-        this._id = id ? id : uuid()
+        this._id = id ? id : uuidv4()
     }
 }
