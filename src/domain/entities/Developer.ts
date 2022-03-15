@@ -1,16 +1,9 @@
+import { Skill } from "../enum/Skill"
 import { Entity } from "./Entity"
-
-enum DeveloperSkills {
-    Swift = "Swift",
-    SwiftUI = "SwiftUI",
-    Typescript = "Typescript",
-    NodeJs = "NodeJs",
-    ReactJs = "ReactJs"
-}
 
 interface DeveloperProps {
     name: string
-    skills: DeveloperSkills[]
+    skills: Skill[]
 }
 
 export class Developer extends Entity<DeveloperProps> {
@@ -22,4 +15,12 @@ export class Developer extends Entity<DeveloperProps> {
         const developer = new Developer(props, id)
         return developer
     } 
+
+    getName(): string {
+        return this.props.name
+    }
+
+    getSkills(): Skill[] {
+        return this.props.skills
+    }
 }
