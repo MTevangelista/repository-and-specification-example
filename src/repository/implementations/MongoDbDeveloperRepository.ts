@@ -1,5 +1,4 @@
-// import { MongoDBFactory } from "../../app/database/MongoDbFactory";
-import { WithId } from "mongodb";
+import { InsertOneResult, WithId } from "mongodb";
 import { MongoDB } from "../../app/database/MongoDB";
 import { Developer } from "../../domain/entities/Developer";
 import { IDeveloperRepository } from "../IDeveloperRepository";
@@ -9,8 +8,9 @@ export class MongoDbDeveloperRepository implements IDeveloperRepository {
         private developerConnection = MongoDB.getCollection("developers")
     ) {}
 
-    async save(developer: Developer): Promise<void> {
-        await this.developerConnection.insertOne(developer) 
+    async save(developer: Developer): Promise<InsertOneResult<Document>> {
+        const response = await this.developerConnection.insertOne(developer) 
+        return response
     }
 
     async getAll(): Promise<WithId<Developer>[]> {

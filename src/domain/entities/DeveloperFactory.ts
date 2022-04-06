@@ -1,3 +1,4 @@
+import { Name } from "../valueObject/Name";
 import { Developer, IDeveloperProps } from "./Developer";
 
 export class DeveloperFactory {

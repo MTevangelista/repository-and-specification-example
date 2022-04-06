@@ -1,4 +1,5 @@
 import { DeveloperType } from "../enum/DeveloperType"
+import { Name } from "../valueObject/Name"
 
 export interface IDeveloperProps {
     name: string
@@ -14,9 +15,4 @@ export class Developer {
         private readonly type: DeveloperType,
         private readonly monthlyPayment: number
     ) {}
-
-    // public static create(props: IDeveloperProps): Developer {
-    //     const developer = new Developer(props)
-    //     return developer
-    // } 
 }
