@@ -1,19 +1,17 @@
-import { Developer } from "../../domain/entities/Developer";
+import { DeveloperFactory } from "../../domain/entities/DeveloperFactory";
 import { IDeveloperRepository } from "../../repository/IDeveloperRepository";
 import { ICreateDeveloperRequestDTO } from "./ICreateDeveloperRequestDTO";
 
 export class CreateDeveloperUseCase {
-    private developerRepository: IDeveloperRepository
-
-    constructor(developerRepository: IDeveloperRepository) {
-        this.developerRepository = developerRepository
-    }
+    constructor(
+        private readonly repository: IDeveloperRepository
+    ) {}
 
     public async execute(data: ICreateDeveloperRequestDTO) {        
-        const developer = Developer.create(data)
+        const developer = DeveloperFactory.create(data)
 
         try {
-            await this.developerRepository.save(developer)
+            await this.repository.save(developer)
         } catch (err) {
             throw new Error(`An unexpected error occurred: ${err}`)
         }

@@ -1,26 +1,22 @@
-import { Skill } from "../enum/Skill"
-import { Entity } from "./Entity"
+import { DeveloperType } from "../enum/DeveloperType"
 
-interface DeveloperProps {
+export interface IDeveloperProps {
     name: string
-    skills: Skill[]
+    email: string
+    type: DeveloperType
+    monthlyPayment: number
 }
 
-export class Developer extends Entity<DeveloperProps> {
-    private constructor(props: DeveloperProps, id?: string) {
-        super(props, id)
-    }
+export class Developer {
+    constructor(
+        private name: string,
+        private readonly email: string,
+        private readonly type: DeveloperType,
+        private readonly monthlyPayment: number
+    ) {}
 
-    public static create(props: DeveloperProps, id?: string): Developer {
-        const developer = new Developer(props, id)
-        return developer
-    } 
-
-    getName(): string {
-        return this.props.name
-    }
-
-    getSkills(): Skill[] {
-        return this.props.skills
-    }
+    // public static create(props: IDeveloperProps): Developer {
+    //     const developer = new Developer(props)
+    //     return developer
+    // } 
 }

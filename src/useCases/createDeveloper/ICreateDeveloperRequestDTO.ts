@@ -1,6 +1,8 @@
-import { Skill } from "../../domain/enum/Skill"
+import { DeveloperType } from "../../domain/enum/DeveloperType"
 
 export interface ICreateDeveloperRequestDTO {
     name: string
-    skills: Skill[]
+    email: string
+    type: DeveloperType
+    monthlyPayment: number
 }

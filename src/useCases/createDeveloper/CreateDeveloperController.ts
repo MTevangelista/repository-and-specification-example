@@ -9,10 +9,8 @@ export class CreateDeveloperController {
     }
 
     async handle(request: Request, response: Response): Promise<Response> {
-        const { name, skills } = request.body
-
         try {
-            await this.createDeveloperUseCase.execute({ name, skills })
+            await this.createDeveloperUseCase.execute(request.body)
             return response.status(201).send()
         } catch (err) {
             return response.status(400).json({

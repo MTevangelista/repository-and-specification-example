@@ -2,8 +2,8 @@ import app from "./app/app"
 import { MongoDB } from "./app/database/MongoDB"
 
 const port = 3333
-const mongoDB = new MongoDB()
-mongoDB.connect()
+
+MongoDB.connect()
     .then(() => {
         console.log('MongoDB connected')
         app.listen(port, () => {

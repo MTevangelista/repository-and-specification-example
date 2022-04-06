@@ -1,10 +1,10 @@
-import { DeveloperRepository } from "../../repository/implementations/DeveloperRepository"
+import { MongoDbDeveloperRepository } from "../../repository/implementations/MongoDbDeveloperRepository"
 import { GetDevelopersController } from "./GetDevelopersController"
 import { GetDevelopersUseCase } from "./GetDevelopersUseCase"
 
-const developerRepository = new DeveloperRepository()
+const mongoDbDeveloperRepository = new MongoDbDeveloperRepository()
 
-const getDevelopersUseCase = new GetDevelopersUseCase(developerRepository)
+const getDevelopersUseCase = new GetDevelopersUseCase(mongoDbDeveloperRepository)
 const getDevelopersController = new GetDevelopersController(getDevelopersUseCase)
 
 export { getDevelopersUseCase, getDevelopersController }
