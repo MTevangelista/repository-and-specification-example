@@ -1,15 +1,15 @@
 import { Router } from "express"
-import { createDeveloperController } from "../../useCases/createDeveloper"
-import { getDevelopersController } from "../../useCases/getDevelopers"
+import { createUserController } from "../../useCases/createUser"
+import { fetchUsersController } from "../../useCases/fetchUsers"
 
 const routes = Router()
 
-routes.post("/developers", (request, response) => {
-    return createDeveloperController.handle(request, response)
+routes.post("/users", (request, response) => {
+    return createUserController.handle(request, response)
 })
 
-routes.get("/developers", (request, response) => {
-    return getDevelopersController.handle(request, response)
+routes.get("/users", (request, response) => {
+    return fetchUsersController.handle(request, response)
 })
 
 export default routes

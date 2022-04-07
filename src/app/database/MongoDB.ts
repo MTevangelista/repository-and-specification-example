@@ -1,18 +1,24 @@
-import * as mongoDB from "mongodb";
-import * as dotenv from "dotenv";
-import { Collection, MongoClient } from "mongodb";
-
-dotenv.config();
+import mongoose from "mongoose"
 
 export class MongoDB {
-    private static client: mongoDB.MongoClient = new MongoClient(process.env.MONGO_URI || "")
+    private mongoURI = process.env.MONGO_URI || ""
 
-    static async connect(): Promise<void> {
-        console.log("Trying to connect with MongoDB to run server...");
-        await this.client.connect()
+    constructor() { }
+
+    public createConnection() {
+        mongoose.connect(this.mongoURI, {
+            useNewUrlParser: true,
+            useUnifiedTopology: true,
+            useCreateIndex: true,
+            useFindAndModify: false
+        });
+        this.logger()
     }
 
-    static getCollection(name: string): Collection {
-        return MongoDB.client.db().collection(name)
+    private logger(): void {
+        let dbConnection: mongoose.Connection
+        dbConnection = mongoose.connection
+        dbConnection.on('connected', () => console.log('MongoDB connected'))
+        dbConnection.on('error', (error) => console.error.bind(console, `Connection error: ${error}`))
     }
 }
